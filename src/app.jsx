@@ -18,7 +18,7 @@ function App() {
       requestOptions
     )
       .then((response) => response.json()) //정상적으로 받아지면 받은걸 json으로 변환하고
-      .then((result) => setVideos(result.items)) //텍스트를 출력하고
+      .then((result) => setVideos(result.items))
       .catch((error) => console.log("error", error));
   }, []);
   //마운트가 되었거나 업데이트가 되었을 때 콜백을 등록할 수 있는게 useEffect()
