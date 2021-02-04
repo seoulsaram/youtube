@@ -1,12 +1,11 @@
 import styles from "./search_header.module.css";
-import React, { useRef } from "react";
+import React, { memo, useRef } from "react";
 
-const SearchHeader = ({ onSearch }) => {
+const SearchHeader = memo(({ video, onSearch }) => {
   //검색이라는 이벤트가 발생하면 무조건 이 onSearch 콜백함수를 불러!
   const inputRef = useRef();
   const handleSearch = () => {
     const value = inputRef.current.value;
-
     onSearch(value);
   };
   const onClick = () => {
@@ -18,9 +17,19 @@ const SearchHeader = ({ onSearch }) => {
       handleSearch();
     }
   };
+
+  const goBack = () => {
+    video(null);
+  };
+
   return (
     <header className={styles.header}>
-      <img className={styles.img} src="/images/youtubeLogo.png" alt="Logo" />
+      <img
+        className={styles.img}
+        src="/images/youtubeLogo.png"
+        alt="Logo"
+        onClick={goBack}
+      />
       <input
         ref={inputRef}
         className={styles.input}
@@ -33,6 +42,6 @@ const SearchHeader = ({ onSearch }) => {
       </button>
     </header>
   );
-};
+});
 
 export default SearchHeader;
